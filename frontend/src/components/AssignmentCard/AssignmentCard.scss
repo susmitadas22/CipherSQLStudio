@@ -1,0 +1,107 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.assignment-card {
+  @include card;
+  cursor: pointer;
+  transition: all $transition-base;
+  border: 2px solid transparent;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+    border-color: $primary-light;
+  }
+  
+  &:active {
+    transform: translateY(-2px);
+  }
+  
+  &__header {
+    @include flex-between;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+  }
+  
+  &__title {
+    @include heading($font-size-lg);
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+  }
+  
+  &__difficulty {
+    flex-shrink: 0;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    font-size: $font-size-xs;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    &--easy {
+      background-color: rgba($difficulty-easy, 0.1);
+      color: $difficulty-easy;
+    }
+    
+    &--medium {
+      background-color: rgba($difficulty-medium, 0.1);
+      color: $difficulty-medium;
+    }
+    
+    &--hard {
+      background-color: rgba($difficulty-hard, 0.1);
+      color: $difficulty-hard;
+    }
+  }
+  
+  &__description {
+    color: $text-secondary;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+    
+    @include tablet {
+      font-size: $font-size-base;
+    }
+  }
+  
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__tag {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    background-color: $bg-tertiary;
+    color: $text-secondary;
+    font-size: $font-size-xs;
+    border-radius: $radius-sm;
+    font-weight: 500;
+    
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+  }
+  
+  &__button {
+    @include button-base;
+    width: 100%;
+    background-color: $primary-color;
+    color: white;
+    gap: $spacing-sm;
+    margin-top: $spacing-sm;
+    
+    &:hover {
+      background-color: $primary-dark;
+    }
+  }
+}

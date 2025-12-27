@@ -1,0 +1,201 @@
+@import './variables';
+@import './mixins';
+
+// Global Reset & Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family;
+  color: $text-primary;
+  background-color: $bg-secondary;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: $font-mono;
+}
+
+// App Container
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  &__content {
+    flex: 1;
+    padding-top: 60px; // Account for fixed header
+    
+    @include tablet {
+      padding-top: 70px;
+    }
+  }
+}
+
+// Button Styles (BEM)
+.button {
+  @include button-base;
+  
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: $primary-dark;
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+  
+  &--secondary {
+    background-color: $secondary-color;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: darken($secondary-color, 10%);
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+  }
+  
+  &--outline {
+    background-color: transparent;
+    color: $text-primary;
+    border: 2px solid $border-color;
+    
+    &:hover:not(:disabled) {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+  
+  &--full {
+    width: 100%;
+  }
+  
+  &--execute {
+    gap: $spacing-sm;
+  }
+}
+
+// Spinner Animation
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid $bg-tertiary;
+  border-top-color: $primary-color;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+// Difficulty Badge
+.difficulty-badge {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  @include tablet {
+    font-size: $font-size-sm;
+    padding: $spacing-sm $spacing-md;
+  }
+  
+  &--easy {
+    background-color: rgba($difficulty-easy, 0.1);
+    color: $difficulty-easy;
+  }
+  
+  &--medium {
+    background-color: rgba($difficulty-medium, 0.1);
+    color: $difficulty-medium;
+  }
+  
+  &--hard {
+    background-color: rgba($difficulty-hard, 0.1);
+    color: $difficulty-hard;
+  }
+}
+
+// Filter Buttons
+.filter-button {
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  border: 2px solid $border-color;
+  background-color: $bg-primary;
+  color: $text-secondary;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: all $transition-base;
+  
+  @include tablet {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-base;
+  }
+  
+  &:hover {
+    border-color: $primary-light;
+    color: $primary-color;
+  }
+  
+  &--active {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: white;
+    
+    &:hover {
+      background-color: $primary-dark;
+      border-color: $primary-dark;
+    }
+  }
+}
+
+// Utility Classes
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: $spacing-sm; }
+.mt-2 { margin-top: $spacing-md; }
+.mt-3 { margin-top: $spacing-lg; }
+.mt-4 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-md; }
+.mb-3 { margin-bottom: $spacing-lg; }
+.mb-4 { margin-bottom: $spacing-xl; }
+
+// Focus States
+*:focus {
+  outline: 2px solid $primary-light;
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+  outline: 2px solid $primary-light;
+  outline-offset: 2px;
+}

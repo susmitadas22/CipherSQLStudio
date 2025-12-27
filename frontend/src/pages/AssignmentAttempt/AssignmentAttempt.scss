@@ -1,0 +1,257 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.assignment-attempt {
+  min-height: calc(100vh - 60px);
+  background-color: $bg-secondary;
+  
+  @include tablet {
+    min-height: calc(100vh - 70px);
+  }
+  
+  &__loading,
+  &__error {
+    @include flex-center;
+    @include flex-column;
+    min-height: 50vh;
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+  }
+  
+  &__error {
+    text-align: center;
+    
+    h2 {
+      font-size: $font-size-2xl;
+      color: $error-color;
+      
+      @include tablet {
+        font-size: $font-size-3xl;
+      }
+    }
+    
+    p {
+      color: $text-secondary;
+      font-size: $font-size-base;
+      
+      @include tablet {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+  
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: calc(100vh - 60px);
+    
+    @include desktop {
+      grid-template-columns: 1fr 1.5fr;
+      min-height: calc(100vh - 70px);
+    }
+  }
+  
+  &__question-panel {
+    padding: $spacing-lg;
+    background-color: $bg-primary;
+    overflow-y: auto;
+    @include custom-scrollbar;
+    
+    @include tablet {
+      padding: $spacing-xl;
+    }
+    
+    @include desktop {
+      border-right: 1px solid $border-color;
+      max-height: calc(100vh - 70px);
+    }
+  }
+  
+  &__back {
+    @include button-base;
+    background-color: transparent;
+    color: $text-secondary;
+    padding: $spacing-sm;
+    margin-bottom: $spacing-lg;
+    
+    &:hover {
+      color: $primary-color;
+      background-color: $bg-secondary;
+    }
+  }
+  
+  &__question {
+    @include card;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__header {
+    @include flex-between;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+    flex-wrap: wrap;
+  }
+  
+  &__title {
+    @include heading($font-size-lg);
+    margin: 0;
+    
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+    
+    @include desktop {
+      font-size: $font-size-2xl;
+    }
+  }
+  
+  &__question-content,
+  &__requirements {
+    margin-bottom: $spacing-lg;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    h3 {
+      font-size: $font-size-base;
+      font-weight: 600;
+      margin-bottom: $spacing-sm;
+      
+      @include tablet {
+        font-size: $font-size-lg;
+      }
+    }
+    
+    p {
+      color: $text-secondary;
+      font-size: $font-size-sm;
+      line-height: 1.7;
+      
+      @include tablet {
+        font-size: $font-size-base;
+      }
+    }
+    
+    ul {
+      padding-left: $spacing-lg;
+      
+      li {
+        color: $text-secondary;
+        font-size: $font-size-sm;
+        margin-bottom: $spacing-sm;
+        
+        @include tablet {
+          font-size: $font-size-base;
+        }
+      }
+    }
+  }
+  
+  &__work-panel {
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    overflow-y: auto;
+    @include custom-scrollbar;
+    
+    @include tablet {
+      padding: $spacing-xl;
+    }
+    
+    @include desktop {
+      max-height: calc(100vh - 70px);
+    }
+  }
+  
+  &__editor-section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+  
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    
+    @include tablet {
+      gap: $spacing-md;
+    }
+    
+    .button {
+      flex: 1;
+      min-width: 120px;
+      
+      @include tablet {
+        flex: initial;
+      }
+    }
+  }
+  
+  &__hint {
+    position: relative;
+    @include card;
+    background-color: rgba($secondary-color, 0.1);
+    border: 2px solid rgba($secondary-color, 0.3);
+    
+    h4 {
+      font-size: $font-size-base;
+      color: $secondary-color;
+      margin-bottom: $spacing-sm;
+      
+      @include tablet {
+        font-size: $font-size-lg;
+      }
+    }
+    
+    p {
+      color: $text-primary;
+      font-size: $font-size-sm;
+      line-height: 1.7;
+      
+      @include tablet {
+        font-size: $font-size-base;
+      }
+    }
+  }
+  
+  &__hint-close {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    background: none;
+    border: none;
+    color: $text-light;
+    font-size: $font-size-lg;
+    cursor: pointer;
+    padding: $spacing-xs;
+    line-height: 1;
+    
+    &:hover {
+      color: $text-primary;
+    }
+  }
+  
+  &__results-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    
+    @include tablet {
+      min-height: 400px;
+    }
+  }
+  
+  &__results-title {
+    font-size: $font-size-base;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+    
+    @include tablet {
+      font-size: $font-size-lg;
+    }
+  }
+}

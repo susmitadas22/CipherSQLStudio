@@ -1,0 +1,155 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.results-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  &__loading {
+    @include flex-center;
+    @include flex-column;
+    gap: $spacing-md;
+    height: 100%;
+    min-height: 200px;
+    color: $text-secondary;
+  }
+  
+  &__error {
+    padding: $spacing-lg;
+    background-color: rgba($error-color, 0.1);
+    border: 2px solid rgba($error-color, 0.3);
+    border-radius: $radius-lg;
+    
+    h4 {
+      color: $error-color;
+      margin-bottom: $spacing-sm;
+      font-size: $font-size-base;
+      
+      @include tablet {
+        font-size: $font-size-lg;
+      }
+    }
+    
+    p {
+      color: $text-primary;
+      font-size: $font-size-sm;
+      font-family: $font-mono;
+      
+      @include tablet {
+        font-size: $font-size-base;
+      }
+    }
+  }
+  
+  &__empty {
+    @include flex-center;
+    height: 100%;
+    min-height: 200px;
+    text-align: center;
+    color: $text-light;
+    font-size: $font-size-sm;
+    
+    @include tablet {
+      font-size: $font-size-base;
+    }
+  }
+  
+  &__header {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+    
+    h4 {
+      color: $success-color;
+      font-size: $font-size-base;
+      margin: 0;
+      
+      @include tablet {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+  
+  &__meta {
+    display: flex;
+    gap: $spacing-sm;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+  }
+  
+  &__table-wrapper {
+    overflow: auto;
+    @include custom-scrollbar;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    max-height: 400px;
+  }
+  
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-xs;
+    
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+    
+    @include desktop {
+      font-size: $font-size-base;
+    }
+    
+    thead {
+      position: sticky;
+      top: 0;
+      background-color: $bg-tertiary;
+      z-index: 10;
+      
+      th {
+        padding: $spacing-sm $spacing-md;
+        text-align: left;
+        font-weight: 600;
+        color: $text-primary;
+        border-bottom: 2px solid $border-color;
+        white-space: nowrap;
+        
+        @include tablet {
+          padding: $spacing-md;
+        }
+      }
+    }
+    
+    tbody {
+      tr {
+        transition: background-color $transition-fast;
+        
+        &:hover {
+          background-color: $bg-secondary;
+        }
+        
+        &:not(:last-child) {
+          border-bottom: 1px solid $border-color;
+        }
+      }
+      
+      td {
+        padding: $spacing-sm $spacing-md;
+        color: $text-secondary;
+        
+        @include tablet {
+          padding: $spacing-md;
+        }
+        
+        em {
+          color: $text-light;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

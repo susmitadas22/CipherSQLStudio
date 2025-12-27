@@ -1,0 +1,152 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.sample-data {
+  margin-top: $spacing-xl;
+  
+  &__title {
+    @include heading($font-size-lg);
+    margin-bottom: $spacing-lg;
+    
+    @include tablet {
+      font-size: $font-size-xl;
+    }
+  }
+  
+  &__table {
+    @include card;
+    margin-bottom: $spacing-lg;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__table-name {
+    font-size: $font-size-base;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+    font-family: $font-mono;
+    
+    @include tablet {
+      font-size: $font-size-lg;
+    }
+  }
+  
+  &__schema {
+    margin-bottom: $spacing-lg;
+    
+    h5 {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $text-primary;
+      margin-bottom: $spacing-sm;
+      
+      @include tablet {
+        font-size: $font-size-base;
+      }
+    }
+  }
+  
+  &__columns {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  &__column {
+    padding: $spacing-xs 0;
+    font-size: $font-size-xs;
+    color: $text-secondary;
+    font-family: $font-mono;
+    
+    @include tablet {
+      font-size: $font-size-sm;
+      padding: $spacing-sm 0;
+    }
+    
+    strong {
+      color: $text-primary;
+    }
+  }
+  
+  &__column-desc {
+    color: $text-light;
+    font-family: $font-family;
+    font-style: italic;
+  }
+  
+  &__preview {
+    h5 {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $text-primary;
+      margin-bottom: $spacing-sm;
+      
+      @include tablet {
+        font-size: $font-size-base;
+      }
+    }
+  }
+  
+  &__table-wrapper {
+    overflow-x: auto;
+    @include custom-scrollbar;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-xs;
+    min-width: 300px;
+    
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+    
+    thead {
+      background-color: $bg-tertiary;
+      
+      th {
+        padding: $spacing-sm;
+        text-align: left;
+        font-weight: 600;
+        color: $text-primary;
+        border: 1px solid $border-color;
+        font-family: $font-mono;
+        
+        @include tablet {
+          padding: $spacing-md;
+        }
+      }
+    }
+    
+    tbody {
+      td {
+        padding: $spacing-sm;
+        color: $text-secondary;
+        border: 1px solid $border-color;
+        
+        @include tablet {
+          padding: $spacing-md;
+        }
+        
+        em {
+          color: $text-light;
+          font-style: italic;
+        }
+      }
+    }
+  }
+  
+  &__more {
+    font-size: $font-size-xs;
+    color: $text-light;
+    font-style: italic;
+    
+    @include tablet {
+      font-size: $font-size-sm;
+    }
+  }
+}

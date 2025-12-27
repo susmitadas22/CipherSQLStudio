@@ -1,0 +1,132 @@
+// SCSS Mixins for Mobile-First Responsive Design
+
+// Responsive Breakpoints
+@mixin tablet {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media (min-width: $breakpoint-large) {
+    @content;
+  }
+}
+
+// Flexbox Utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Typography
+@mixin heading($size: $font-size-2xl) {
+  font-size: $size;
+  font-weight: 700;
+  color: $text-primary;
+  line-height: 1.2;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Buttons
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  border-radius: $radius-md;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-decoration: none;
+  
+  @include tablet {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-base;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Cards
+@mixin card {
+  background: $bg-primary;
+  border-radius: $radius-lg;
+  padding: $spacing-md;
+  box-shadow: $shadow-md;
+  transition: box-shadow $transition-base;
+  
+  @include tablet {
+    padding: $spacing-lg;
+  }
+  
+  @include desktop {
+    padding: $spacing-xl;
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include tablet {
+    padding: 0 $spacing-lg;
+  }
+  
+  @include desktop {
+    padding: 0 $spacing-xl;
+  }
+}
+
+// Scrollbar
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $bg-tertiary;
+    border-radius: $radius-sm;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $border-color;
+    border-radius: $radius-sm;
+    
+    &:hover {
+      background: $text-light;
+    }
+  }
+}
