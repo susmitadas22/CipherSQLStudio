@@ -444,9 +444,3 @@ This project is for educational purposes. Feel free to extend and modify as need
 ## 📄 License
 
 MIT License
-
----
-
-## 👨‍💻 Developer Notes
-
-
