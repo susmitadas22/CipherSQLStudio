@@ -449,6 +449,4 @@ MIT License
 
 ## 👨‍💻 Developer Notes
 
-**Hand-drawn Data Flow Diagram** is required as part of deliverables. Draw the complete flow from "User clicks Execute Query" to "Results display" showing all API calls, database queries, and state updates.
 
-Built with ❤️ for SQL learners everywhere!

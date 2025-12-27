@@ -4,17 +4,36 @@
 .assignment-card {
   @include card;
   cursor: pointer;
-  transition: all $transition-base;
-  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 0, 0, 0.3);
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
   
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: $shadow-xl;
-    border-color: $primary-light;
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.4), 0 20px 40px rgba(255, 0, 0, 0.2);
+    border-color: #ff0000;
+    
+    &::before {
+      left: 100%;
+    }
   }
   
   &:active {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.01);
   }
   
   &__header {
@@ -29,6 +48,8 @@
     margin: 0;
     flex: 1;
     min-width: 0;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     
     @include tablet {
       font-size: $font-size-xl;
@@ -37,26 +58,28 @@
   
   &__difficulty {
     flex-shrink: 0;
-    padding: $spacing-xs $spacing-sm;
-    border-radius: $radius-sm;
+    padding: $spacing-xs $spacing-md;
+    border-radius: 20px;
     font-size: $font-size-xs;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: white;
     
     &--easy {
-      background-color: rgba($difficulty-easy, 0.1);
-      color: $difficulty-easy;
+      background: $difficulty-easy-bg;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
     }
     
     &--medium {
-      background-color: rgba($difficulty-medium, 0.1);
-      color: $difficulty-medium;
+      background: $difficulty-medium-bg;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
     }
     
     &--hard {
-      background-color: rgba($difficulty-hard, 0.1);
-      color: $difficulty-hard;
+      background: $difficulty-hard-bg;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
     }
   }
   
@@ -80,12 +103,22 @@
   
   &__tag {
     display: inline-block;
-    padding: $spacing-xs $spacing-sm;
-    background-color: $bg-tertiary;
-    color: $text-secondary;
+    padding: $spacing-xs $spacing-md;
+    background: rgba(255, 0, 0, 0.1);
+    color: #ff6666;
     font-size: $font-size-xs;
-    border-radius: $radius-sm;
-    font-weight: 500;
+    border-radius: 16px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    transition: all 0.2s ease;
+    font-family: 'Courier New', monospace;
+    
+    &:hover {
+      background: rgba(255, 0, 0, 0.2);
+      color: #ff0000;
+      transform: translateY(-1px);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    }
     
     @include tablet {
       font-size: $font-size-sm;

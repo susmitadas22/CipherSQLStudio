@@ -1,28 +1,36 @@
 // SCSS Variables - Mobile-First Design
 // Breakpoints: 320px (mobile), 641px (tablet), 1024px (desktop), 1281px (large)
 
-// Colors
-$primary-color: #4f46e5;
-$primary-dark: #4338ca;
-$primary-light: #818cf8;
-$secondary-color: #06b6d4;
-$success-color: #10b981;
-$error-color: #ef4444;
-$warning-color: #f59e0b;
+// Colors - Red & Black Coder Theme
+$primary-color: #ff0000;
+$primary-dark: #cc0000;
+$primary-light: #ff3333;
+$primary-gradient: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
 
-$text-primary: #1f2937;
-$text-secondary: #6b7280;
-$text-light: #9ca3af;
+$secondary-color: #00ff00;
+$secondary-gradient: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
 
-$bg-primary: #ffffff;
-$bg-secondary: #f9fafb;
-$bg-tertiary: #f3f4f6;
-$border-color: #e5e7eb;
+$success-color: #00ff00;
+$error-color: #ff0000;
+$warning-color: #ffaa00;
 
-// Difficulty Colors
-$difficulty-easy: #10b981;
-$difficulty-medium: #f59e0b;
-$difficulty-hard: #ef4444;
+$text-primary: #ffffff;
+$text-secondary: #b0b0b0;
+$text-light: #707070;
+
+$bg-primary: #000000;
+$bg-secondary: #0a0a0a;
+$bg-tertiary: #1a1a1a;
+$bg-gradient: linear-gradient(135deg, #1a0000 0%, #000000 100%);
+$border-color: #ff0000;
+
+// Difficulty Colors - Coder Style
+$difficulty-easy: #00ff00;
+$difficulty-easy-bg: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+$difficulty-medium: #ffaa00;
+$difficulty-medium-bg: linear-gradient(135deg, #ffaa00 0%, #ff8800 100%);
+$difficulty-hard: #ff0000;
+$difficulty-hard-bg: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
 
 // Typography
 $font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

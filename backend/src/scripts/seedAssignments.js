@@ -183,6 +183,149 @@ const assignments = [
     hints: ['ORDER BY salary DESC', 'LIMIT restricts number of rows', 'DESC means descending'],
     tags: ['intermediate', 'sorting', 'limit'],
   },
+  {
+    title: 'Complex Join with Aggregate Functions',
+    description: 'Master advanced JOIN operations with aggregations',
+    difficulty: 'Hard',
+    question: 'Find each customer\'s total spending and order count, including only customers who have spent more than $400.',
+    requirements: [
+      'Join customers and orders tables',
+      'Calculate total spending per customer using SUM',
+      'Count orders per customer using COUNT',
+      'Filter for customers with total spending > $400',
+      'Show customer_name, total_spent, and order_count',
+    ],
+    tableSchemas: [
+      {
+        tableName: 'customers',
+        columns: [
+          { name: 'customer_id', type: 'INTEGER', description: 'Customer ID' },
+          { name: 'customer_name', type: 'VARCHAR(100)', description: 'Customer name' },
+          { name: 'email', type: 'VARCHAR(100)', description: 'Email address' },
+        ],
+        sampleData: [
+          { customer_id: 1, customer_name: 'John Doe', email: 'john@example.com' },
+          { customer_id: 2, customer_name: 'Jane Smith', email: 'jane@example.com' },
+          { customer_id: 3, customer_name: 'Mike Wilson', email: 'mike@example.com' },
+        ],
+      },
+      {
+        tableName: 'orders',
+        columns: [
+          { name: 'order_id', type: 'INTEGER', description: 'Order ID' },
+          { name: 'customer_id', type: 'INTEGER', description: 'Customer ID (foreign key)' },
+          { name: 'order_date', type: 'DATE', description: 'Order date' },
+          { name: 'total_amount', type: 'DECIMAL(10,2)', description: 'Total amount' },
+        ],
+        sampleData: [
+          { order_id: 101, customer_id: 1, order_date: '2025-01-15', total_amount: 250.50 },
+          { order_id: 102, customer_id: 2, order_date: '2025-01-16', total_amount: 180.00 },
+          { order_id: 103, customer_id: 1, order_date: '2025-01-17', total_amount: 320.75 },
+        ],
+      },
+    ],
+    expectedOutput: 'Customers with total spending and order count (where total > $400)',
+    hints: ['Use GROUP BY with customer_id', 'HAVING clause filters aggregated results', 'Combine SUM and COUNT functions'],
+    tags: ['advanced', 'join', 'aggregate', 'having'],
+  },
+  {
+    title: 'Subquery with Correlated Query',
+    description: 'Practice nested subqueries and correlated queries',
+    difficulty: 'Hard',
+    question: 'Find employees who earn more than the average salary in their department.',
+    requirements: [
+      'Use a correlated subquery',
+      'Compare each employee salary to their department average',
+      'Show name, department, salary, and department average',
+    ],
+    tableSchemas: [
+      {
+        tableName: 'employees',
+        columns: [
+          { name: 'id', type: 'INTEGER', description: 'Employee ID' },
+          { name: 'name', type: 'VARCHAR(100)', description: 'Employee name' },
+          { name: 'department', type: 'VARCHAR(50)', description: 'Department name' },
+          { name: 'salary', type: 'DECIMAL(10,2)', description: 'Annual salary' },
+        ],
+        sampleData: [
+          { id: 1, name: 'Alice Johnson', department: 'Engineering', salary: 75000 },
+          { id: 2, name: 'Bob Smith', department: 'Marketing', salary: 65000 },
+          { id: 3, name: 'Carol White', department: 'Engineering', salary: 80000 },
+          { id: 4, name: 'David Brown', department: 'Sales', salary: 60000 },
+          { id: 5, name: 'Eve Davis', department: 'Engineering', salary: 72000 },
+          { id: 6, name: 'Frank Miller', department: 'Executive', salary: 120000 },
+        ],
+      },
+    ],
+    expectedOutput: 'Employees earning above their department average',
+    hints: ['Correlated subquery uses outer query reference', 'Calculate AVG(salary) for matching department', 'Use WHERE with subquery comparison'],
+    tags: ['advanced', 'subquery', 'correlated', 'aggregate'],
+  },
+  {
+    title: 'Window Functions - Running Total',
+    description: 'Master window functions for advanced analytics',
+    difficulty: 'Hard',
+    question: 'Calculate a running total of order amounts for each customer, ordered by order date.',
+    requirements: [
+      'Use window function SUM() OVER()',
+      'Partition by customer_id',
+      'Order by order_date within each partition',
+      'Show customer_id, order_date, total_amount, and running_total',
+    ],
+    tableSchemas: [
+      {
+        tableName: 'orders',
+        columns: [
+          { name: 'order_id', type: 'INTEGER', description: 'Order ID' },
+          { name: 'customer_id', type: 'INTEGER', description: 'Customer ID' },
+          { name: 'order_date', type: 'DATE', description: 'Order date' },
+          { name: 'total_amount', type: 'DECIMAL(10,2)', description: 'Total amount' },
+        ],
+        sampleData: [
+          { order_id: 101, customer_id: 1, order_date: '2025-01-15', total_amount: 250.50 },
+          { order_id: 102, customer_id: 2, order_date: '2025-01-16', total_amount: 180.00 },
+          { order_id: 103, customer_id: 1, order_date: '2025-01-17', total_amount: 320.75 },
+          { order_id: 104, customer_id: 1, order_date: '2025-01-20', total_amount: 150.00 },
+        ],
+      },
+    ],
+    expectedOutput: 'Running total of orders per customer',
+    hints: ['OVER() creates window', 'PARTITION BY groups data', 'ORDER BY defines calculation order'],
+    tags: ['advanced', 'window-functions', 'analytics'],
+  },
+  {
+    title: 'Recursive CTE - Organizational Hierarchy',
+    description: 'Use recursive Common Table Expressions for hierarchical data',
+    difficulty: 'Hard',
+    question: 'Create a recursive query to show all employees and their management chain depth.',
+    requirements: [
+      'Use WITH RECURSIVE CTE',
+      'Start from employees with no manager (manager_id IS NULL)',
+      'Recursively join to find all subordinates',
+      'Show employee name and hierarchy level',
+    ],
+    tableSchemas: [
+      {
+        tableName: 'employees_hierarchy',
+        columns: [
+          { name: 'id', type: 'INTEGER', description: 'Employee ID' },
+          { name: 'name', type: 'VARCHAR(100)', description: 'Employee name' },
+          { name: 'manager_id', type: 'INTEGER', description: 'Manager ID (NULL for top level)' },
+        ],
+        sampleData: [
+          { id: 1, name: 'CEO Frank', manager_id: null },
+          { id: 2, name: 'VP Alice', manager_id: 1 },
+          { id: 3, name: 'VP Bob', manager_id: 1 },
+          { id: 4, name: 'Manager Carol', manager_id: 2 },
+          { id: 5, name: 'Employee David', manager_id: 4 },
+          { id: 6, name: 'Employee Eve', manager_id: 4 },
+        ],
+      },
+    ],
+    expectedOutput: 'Employee hierarchy with depth levels',
+    hints: ['Start with base case (manager_id IS NULL)', 'Recursive case joins on manager_id = id', 'Increment level in each recursion'],
+    tags: ['advanced', 'cte', 'recursive', 'hierarchy'],
+  },
 ];
 
 // PostgreSQL table creation queries
@@ -191,6 +334,7 @@ const createTablesSQL = `
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS customers CASCADE;
 DROP TABLE IF EXISTS employees CASCADE;
+DROP TABLE IF EXISTS employees_hierarchy CASCADE;
 
 -- Create employees table
 CREATE TABLE employees (
@@ -198,6 +342,13 @@ CREATE TABLE employees (
   name VARCHAR(100) NOT NULL,
   department VARCHAR(50) NOT NULL,
   salary DECIMAL(10, 2) NOT NULL
+);
+
+-- Create employees hierarchy table for recursive CTE assignment
+CREATE TABLE employees_hierarchy (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  manager_id INTEGER REFERENCES employees_hierarchy(id)
 );
 
 -- Create customers table
@@ -224,6 +375,15 @@ INSERT INTO employees (name, department, salary) VALUES
   ('Eve Davis', 'Engineering', 72000),
   ('Frank Miller', 'Executive', 120000);
 
+-- Insert sample data into employees_hierarchy
+INSERT INTO employees_hierarchy (id, name, manager_id) VALUES
+  (1, 'CEO Frank', NULL),
+  (2, 'VP Alice', 1),
+  (3, 'VP Bob', 1),
+  (4, 'Manager Carol', 2),
+  (5, 'Employee David', 4),
+  (6, 'Employee Eve', 4);
+
 -- Insert sample data into customers
 INSERT INTO customers (customer_name, email) VALUES
   ('John Doe', 'john@example.com'),
@@ -234,7 +394,8 @@ INSERT INTO customers (customer_name, email) VALUES
 INSERT INTO orders (customer_id, order_date, total_amount) VALUES
   (1, '2025-01-15', 250.50),
   (2, '2025-01-16', 180.00),
-  (1, '2025-01-17', 320.75);
+  (1, '2025-01-17', 320.75),
+  (1, '2025-01-20', 150.00);
 `;
 
 const seedDatabase = async () => {

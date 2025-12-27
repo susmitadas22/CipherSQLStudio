@@ -17,9 +17,10 @@ html {
 body {
   font-family: $font-family;
   color: $text-primary;
-  background-color: $bg-secondary;
+  background: linear-gradient(to bottom, #000000 0%, #1a0000 50%, #000000 100%);
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 code {
